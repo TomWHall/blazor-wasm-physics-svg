@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "ES2015",
+    "moduleResolution": "node",
+    "outDir": "wwwroot/js",
+    "esModuleInterop": true,
+    "sourceMap": true
+  },
+  "include": ["TypeScript/**/*.ts"],
+  "exclude": ["node_modules"],
+  "compileOnSave": true
+}

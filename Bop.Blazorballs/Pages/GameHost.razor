@@ -1,0 +1,50 @@
+﻿@page "/"
+@page "/gamehost"
+@using Bop.Blazorballs.Code
+@using Bop.Blazorballs.Code.Rendering
+@using Bop.Blazorballs.Code.Rendering.Patterns
+@implements IDisposable
+@inject IJSRuntime JsRuntime
+
+<PageTitle>Game</PageTitle>
+
+@if (_game != null)
+{
+    <div class="svg-container">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 @Config.SvgWidthUnits @Config.SvgHeightUnits">
+            <defs>
+                <clipPath id="viewport">
+                    <rect x="0" y="0" width="@Config.SvgWidthUnits" height="@Config.SvgHeightUnits" />
+                </clipPath>
+                <BallPattern />
+                <TilesLisbonPattern />
+                <TilesJupiterBluePattern />
+                <TilesJupiterRedPattern />
+                <TilesBathroomPattern />
+            </defs>
+            <g clipPath="url(#viewport)">
+                @foreach (var gameObject in _game.GameObjects)
+                {
+                    @foreach (var svgGroupWrapper in gameObject.GetSvgGroupsForBodies())
+                    {
+                        <g class="@svgGroupWrapper.ClassName" style="transform: @svgGroupWrapper.Transform">
+                            @foreach (var svgNodeWrapper in svgGroupWrapper.Children)
+                            {
+                                @if (svgNodeWrapper.NodeType == SvgNodeType.Polygon)
+                                {
+                                    var svgPolygonWrapper = (SvgPolygonWrapper)svgNodeWrapper;
+                                    <polygon points="@svgPolygonWrapper.Points" class="@svgPolygonWrapper.ClassName" />
+                                }
+                                else if (svgNodeWrapper.NodeType == SvgNodeType.Circle)
+                                {
+                                    var svgCircleWrapper = (SvgCircleWrapper)svgNodeWrapper;
+                                    <circle cx="0" cy="0" r="@svgCircleWrapper.Radius" class="@svgCircleWrapper.ClassName" style="transform: @svgCircleWrapper.Transform" />
+                                } 
+                            }
+                        </g>
+                    }
+                }
+            </g>
+        </svg>
+    </div>
+}
