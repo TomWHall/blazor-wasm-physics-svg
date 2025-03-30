@@ -30,7 +30,6 @@ A PoC of 2D physics running in Blazor WebAssembly (WASM) rendered using SVG and 
 
 ### Notes
 
-* The demo version is published with WasmEnableSIMD set to false, for browsers which don't support SIMD. Technically setting this to true could speed up the physics calculations, I haven't tested this.
 * The demo version does default release mode trimming. You could probably get away with more aggressive trimming, at the risk of something not working.
 * Instead of using native SVG attributes for specifying body coordinates and rotation, a CSS transform style on each node is used. This is to maximize the chance of the GPU being used, to speed up rendering.
 * The SVG is scaled proportionally to fill the browser window. If you're running a very hi-res monitor, performance may vary.

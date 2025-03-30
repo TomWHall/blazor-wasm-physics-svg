@@ -5,11 +5,6 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
-
-    <PropertyGroup>
-        <WasmEnableSIMD>false</WasmEnableSIMD>
-        <WasmEnableExceptionHandling>false</WasmEnableExceptionHandling>
-    </PropertyGroup>
     
     <ItemGroup>
         <PackageReference Include="Aether.Physics2D" Version="2.1.0" />
